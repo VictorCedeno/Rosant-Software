@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+{% block title %}Nuevo Agente{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+ <link href="{{ asset('css/aseguradora.css') }}" type="text/css" rel="stylesheet" /> 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+   
+
+    <form action="{{ path('agente_create') }}" method="post" class="register"{{ form_enctype(form) }}>
+     {{ parent() }}
+         <h1>Registro de Agente</h1>
+          <img src="{{ asset('icons/aseguradora.png') }}" class="centrada" />
+       {# {{ form_widget(form) }} #}
+
+            <fieldset class="row1">
+                <legend>Información Requerida</legend>
+                 
+                <p>
+                    {{ form_label(form.nombre, 'Nombre:')}}
+                    {{ form_widget(form.nombre)}}
+                    {{ form_label(form.telefono, 'Telefono:')}}
+                    {{ form_widget(form.telefono)}}
+                     {{ form_label(form.email, 'Email:')}}
+                    {{ form_widget(form.email)}}
+                  
+                          
+                </p>
+
+            </fieldset>
+                {{ form_rest(form) }}
+
+                    <div><button type="submit" class="button" id="registrar">Registrar</button>
+                    <a class="enlace" href="{{ path('agente') }}">&#60;&#60;Regresar a la lista</a>
+                </div>
+               
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div id="alert">
+                <a class="alert" href="#alert">{{ flashMessage }}</a> 
+            </div>
+           {% endfor %}    
+      
+    </form>
+
+{% endblock %}

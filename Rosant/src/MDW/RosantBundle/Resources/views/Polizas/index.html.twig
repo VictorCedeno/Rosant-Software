@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+{% block title %}Pólizas{% endblock title %}
+{% block stylesheets %}
+     {{ parent() }}       
+
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}       
+
+{% endblock %}
+
+{% block body -%}
+<div id="contenedor" class="register">
+    {{ parent() }}
+     
+<div class="post"><a><img src="{{ asset('img/banner_seguros.png') }}"/></a></br></div>
+ <h2>Listado de Pólizas</h2>
+    <table id="datatables" class="display">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Ramo</th>
+                <th>Cliente</th>
+                <th>Aseguradora</th>
+                <th>Agente</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Capitalasegurado</th>
+                <th>Fechapago</th>
+                <th>Vigenciadesde</th>
+                <th>Vigenciahasta</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr class="{{ cycle(["alt", ""], loop.index) }}">
+                <td>{{ entity.numero }}</td>
+                <td>{{ entity.ramos }}</td>
+                <td>{{ entity.cliente }}</td>
+                <td>{{ entity.aseguradoras }}</td>
+                <td>{{ entity.agentes }}</td>
+                <td>{{ entity.marcas }}</td>
+                <td>{{ entity.modelo }}</td>
+                <td>{{ entity.capitalAsegurado }}</td>
+                <td>{% if entity.fechaPago %}{{ entity.fechaPago|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.vigenciaDesde %}{{ entity.vigenciaDesde|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.vigenciaHasta %}{{ entity.vigenciaHasta|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+         <div id="options">  
+                <ul>
+                    
+                    <li>
+                        <a href="{{ path('polizas_edit', { 'id': entity.id }) }}"><img src="{{ asset('icons/edit.png') }}" alt="edit" />editar</a>       
+                    </li>
+                    
+                </ul>
+         </div>
+               
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+        {#
+        <ul>
+        <li>
+           {# <a href="{{ path('polizas_new') } Create a new entry </a>
+        </li>
+    </ul> #}
+    {% endblock %}

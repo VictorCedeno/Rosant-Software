@@ -1,0 +1,40 @@
+@font-face { font-family: Apple; src: url('../fonts/MYRIADPRO-BOLD.OTF'); } 
+      label { 
+             font-family: Apple; 
+             font-size: 30px;         
+            }
+
+
+h2 {
+        color: linen;
+	margin: 1.8em 0 1em;
+	padding: 0 0 0 20px;
+	width: 1200x;
+	font-family: Apple;	
+	font-size: 2em;
+	font-weight: normal;
+        text-align: center;
+        background: #abda0f url(../img/overlay.png) repeat-x;
+}
+
+.enlace{
+     background: #abda0f url(../img/overlay.png) repeat-x;
+    padding: 8px 10px 8px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    cursor: pointer;
+    float:left;
+    font-size:18px;
+    margin:10px;
+   font-family:Apple;
+   text-decoration:none;
+/*    position: absolute;
+    left:600px;
+    top:750px;*/
+    
+}

@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+{% block title %}Vehiculos{% endblock title %}
+{% block stylesheets %}
+        {{ parent() }}       
+{% endblock %}
+{% block javascripts %}
+      {{ parent() }}
+{% endblock %}
+
+
+{% block body -%}
+<div id="contenedor" class="register">
+  {{ parent() }}
+  <h2>Listado De Vehiculos</h2>
+<div class="post"><a><img src="{{ asset('img/vehiculos.jpg') }}"/></a></div>
+ <a href="{{ path('vehiculos_new') }}" class="enlace">
+                Registrar un nuevo Vehículo
+            </a>
+    <table id="datatables"  class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+
+            <tr class="{{ cycle(["alt", ""], loop.index) }}">
+                 <td><a href="{{ path('vehiculos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{entity.marcas}}</td>
+                <td>{{ entity.modelo }}</td>
+                <td>{{ entity.year}}</td>
+               <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('vehiculos_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+      
+    {% endblock %}
+
+
+
+
+
+
+
+

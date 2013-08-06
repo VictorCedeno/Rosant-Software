@@ -1,0 +1,5 @@
+{
+    "require": {
+        "sonata-project/admin-bundle": "2.2"
+    }
+}

@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+{% block title %}Nueva Póliza{% endblock title %}
+{% block stylesheets %}
+      <link href="{{ asset('css/poliza.css') }}" type="text/css" rel="stylesheet" />
+      {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+      {{ parent() }}
+{% endblock %}
+  
+{% block body -%}
+   
+    <form class="register" action="{{ path('polizas_create') }}" method="post" {{ form_enctype(form) }}>
+                  {{ parent() }}
+                  <h1>Registro de Póliza</h1>
+                  <img src="{{ asset('icons/poliza.png') }}" class="centrada" />
+                  <p class="destacado">Asegurado:{{ nombre| raw }} {{ apellido }}</p><br/>
+                   <fieldset class="row1">
+                    <legend>Póliza</legend>
+                
+                   
+                  
+                    <p>
+                        {{ form_label(form.numero, 'Número:')}}
+                        {{ form_widget(form.numero)}}
+                        {{ form_label(form.ramos, 'Ramo:')}}
+                        {{ form_widget(form.ramos)}}
+
+                    </p>
+
+           
+                
+                   <p>
+
+                        {{ form_label(form.cliente, ' Código cliente:')}}
+                        {{ form_widget(form.cliente, { 'attr': { 'readonly': 'true' } })}}
+                        {{ form_label(form.aseguradoras, 'Aseguradora:')}}
+                        {{ form_widget(form.aseguradoras)}}
+                            
+                   </p>
+
+
+
+                    <p>
+                        {{ form_label(form.marcas, 'Marca:')}}
+                        {{ form_widget(form.marcas)}}
+                        {{ form_label(form.modelo, 'Modelo:')}}
+                        {{ form_widget(form.modelo)}}
+                    </p>
+                   
+                     <p>
+                        {{ form_label(form.agentes, 'Agente:')}}
+                        {{ form_widget(form.agentes)}}
+                        {{ form_label(form.capitalAsegurado, 'Capital Asegurado:')}}
+                        {{ form_widget(form.capitalAsegurado)}}
+                            
+                    </p>
+
+                     <p>
+                        {{ form_label(form.fechaPago, 'Fecha de Pago:')}}
+                        {{ form_widget(form.fechaPago)}}
+                        <br /> <br />
+                        {{ form_label(form.vigenciaDesde, 'Vigencia Inicio:')}}
+                        {{ form_widget(form.vigenciaDesde)}}
+                        <br /> <br />
+                        {{ form_label(form.vigenciaHasta, 'Vigencia Fin:')}}
+                        {{ form_widget(form.vigenciaHasta)}}
+                            
+                    </p>
+
+                   </fieldset> 
+     
+                   {# {{ form_widget(form) }} #}
+                {{ form_rest(form) }}
+
+                <div><button type="submit" class="button" id="registrar">Registrar</button>
+                    <a class="enlace" href="{{ path('polizas') }}">&#60;&#60;Regresar a la lista</a>
+                </div>
+                 
+           {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div id="alert">
+                <a class="alert" href="#alert">{{ flashMessage }}</a> 
+            </div>
+           {% endfor %}   
+
+                   {#  {{ form_widget(form) }} #}   
+    </form>
+
+{% endblock %}

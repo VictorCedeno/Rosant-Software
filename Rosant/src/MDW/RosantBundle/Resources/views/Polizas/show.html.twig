@@ -1,0 +1,70 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Polizas</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ entity.numero }}</td>
+            </tr>
+            <tr>
+                <th>Ramo</th>
+                <td>{{ entity.ramos }}</td>
+            </tr>
+            <tr>
+                <th>Cliente</th>
+                <td>{{ entity.cliente }}</td>
+            </tr>
+            <tr>
+                <th>Aseguradora</th>
+                <td>{{ entity.aseguradoras }}</td>
+            </tr>
+            <tr>
+                <th>Agente</th>
+                <td>{{ entity.agente }}</td>
+            </tr>
+            <tr>
+                <th>Capitalasegurado</th>
+                <td>{{ entity.capitalAsegurado }}</td>
+            </tr>
+            <tr>
+                <th>Fechapago</th>
+                <td>{{ entity.fechaPago|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Vigenciadesde</th>
+                <td>{{ entity.vigenciaDesde|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Vigenciahasta</th>
+                <td>{{ entity.vigenciaHasta|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('polizas') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('polizas_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('polizas_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

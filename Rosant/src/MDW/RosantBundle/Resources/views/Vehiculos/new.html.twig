@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+{% block title %}Nuevo Vehículo{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+ <link href="{{ asset('css/aseguradora.css') }}" type="text/css" rel="stylesheet" /> 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+{% block body -%}
+
+
+<form action="{{ path('vehiculos_create') }}" method="post" class="register"{{ form_enctype(form) }}>
+     {{ parent() }}
+         <h1>Registro de Vehículo</h1>
+          <img src="{{ asset('img/car_new.png') }}" class="centrada" />
+       {# {{ form_widget(form) }} #}
+
+            <fieldset class="row1">
+                <legend>Información Requerida</legend>
+                 
+                <p>
+                    {{ form_label(form.year, 'Año:')}}
+                    {{ form_widget(form.year)}}
+               </p>
+                <p>
+                    {{ form_label(form.marcas, 'Marca:')}}
+                    {{ form_widget(form.marcas)}}
+                             
+                </p>
+
+                <p>
+                    {{ form_label(form.modelo, 'Modelo:')}}
+                    {{ form_widget(form.modelo)}}
+                    
+                </p>
+
+
+            </fieldset>
+                {{ form_rest(form) }}
+
+                    <div><button type="submit" class="button" id="registrar">Registrar</button>
+                    <a class="enlace" href="{{ path('vehiculos') }}">&#60;&#60;Regresar a la lista</a>
+                </div>
+               
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div id="alert">
+                <a class="alert" href="#alert">{{ flashMessage }}</a> 
+            </div>
+           {% endfor %}    
+      
+    </form>  #}
+
+
+
+
+{% endblock %}

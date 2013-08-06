@@ -1,0 +1,14 @@
+mdw_rosant_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: MDWRosantBundle:Default:index }
+pagina_estatica:
+    pattern: /sitio/{pagina}/
+    defaults: { _controller: MDWRosantBundle:Sitio:estatica }
+MDWAnnotations:
+  resource: "@MDWRosantBundle/Controller/"
+  prefix: /
+  type: annotation 
+  
+mail:
+    pattern: /mensaje/{name}
+    defaults: { _controller: MDWRosantBundle:mensajes:new }

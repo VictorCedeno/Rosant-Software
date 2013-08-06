@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+{% block title %}Editar Agente{% endblock title %}
+{% block stylesheets %}
+      <link href="{{ asset('css/aseguradora.css') }}" type="text/css" rel="stylesheet" />
+      {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+      {{ parent() }}
+{% endblock %}
+{% block body -%}
+   
+
+    <form action="{{ path('agente_update', { 'id': entity.id }) }}" method="post" class="register" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+            {{ parent() }}
+          <h1>Edición de Agente</h1>
+          <img src="{{ asset('icons/aseguradora.png') }}" class="centrada" />
+ 
+            <fieldset class="row1">
+                <legend>Información Requerida</legend>
+                   
+                <p>
+                    {{ form_label(edit_form.nombre, 'Nombre:')}}
+                    {{ form_widget(edit_form.nombre)}}
+                    {{ form_label(edit_form.telefono, 'Telefono:')}}
+                    {{ form_widget(edit_form.telefono)}}
+                    {{ form_label(edit_form.email, 'Email:')}}
+                    {{ form_widget(edit_form.email)}}
+                  
+                          
+                </p>
+
+            </fieldset>
+                {{ form_rest(edit_form) }}
+   
+                
+           <div><button type="submit" class="button">Guardar Cambios</button>
+            </form>
+                <ul class="record_actions">
+                     <li>
+                        <a class="enlace" href="{{ path('agente') }}">&#60;&#60;Regresar a la lista</a>
+                     </li>
+                      
+                    <li>
+                        <form action="{{ path('agente_delete', { 'id': entity.id }) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            {{ form_widget(delete_form) }}
+                            <button id="deleteEntity" type="submit" class="enlace">Eliminar</button>    
+                        </form>
+                    </li>
+                </ul>
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div id="alert">
+                        <a class="alert" href="#alert">{{ flashMessage }}</a> 
+                         </div>
+                    {% endfor %}
+
+            </div>
+
+        
+{% endblock %}

@@ -1,0 +1,5 @@
+mdw_rosant:
+    resource: "@MDWRosantBundle/Resources/config/routing.yml"
+    prefix:   /
+logout:
+    pattern: /admin/logout

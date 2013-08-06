@@ -1,0 +1,79 @@
+	h1 { 
+		  text-align: center;
+		  color: white;
+		  text-transform: uppercase;
+		  padding: 1px;
+		  font-family: 'Raleway', cursive;
+		  font-weight: 100;
+		  position: relative;
+		
+		}
+		
+		h1 a {
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#017890), color-stop(100%,#153450));
+		  display: block;
+		  padding: 20px;
+		  text-decoration: none;
+		  letter-spacing: 60px;
+		  color: white;
+		  -webkit-animation: comein 1.5s 1 ease-in-out forwards;
+		  -moz-animation: comein 1.5s 1 ease-in-out forwards;
+                  border-radius: 15px;
+		}
+		
+		@-webkit-keyframes comein {
+		   0% { letter-spacing: 100px; color: rgba(255,255,255,0); }
+		   70% { letter-spacing: 20px; }
+		   100% { letter-spacing: 30px; color: rgba(255,255,255,1) }
+		}
+		@-moz-keyframes comein {
+		   0% { letter-spacing: 100px; color: rgba(255,255,255,0); }
+		   70% { letter-spacing: 20px; }
+		   100% { letter-spacing: 30px; color: rgba(255,255,255,1) }
+		}
+                
+                @font-face { font-family: WalkWay; src: url('../fonts/Walkway_SemiBold.ttf'); } 
+                 label { 
+                     font-family: WalkWay; 
+                      font-size: 30px;         
+                 }
+                 
+               input[type="text"]{
+    
+    padding: 8px;   
+    border: 1px solid #DDDDDD;
+    width: 500px;
+    
+    
+    /*Applying CSS3 gradient*/
+    background: -moz-linear-gradient(center top , #FFFFFF,  #EEEEEE 1px, #FFFFFF 20px);    
+    background: -webkit-gradient(linear, left top, left 20, from(#FFFFFF), color-stop(5%, #EEEEEE) to(#FFFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBFBFB', endColorstr='#FFFFFF');
+    
+    /*Applying CSS 3radius*/   
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    
+    /*Applying CSS3 box shadow*/
+    -moz-box-shadow: 0 0 2px #DDDDDD;
+    -webkit-box-shadow: 0 0 2px #DDDDDD;
+    box-shadow: 0 0 2px #DDDDDD;
+
+}
+input[type="text"]:hover
+{
+    border:1px solid #cccccc;
+}
+input[type="text"]:focus
+{
+    box-shadow:0 0 2px #FFFE00;
+}
+#options ul{
+  list-style: none;
+}
+
+#options li{
+  display: inline;
+  padding-left: 30px;
+}

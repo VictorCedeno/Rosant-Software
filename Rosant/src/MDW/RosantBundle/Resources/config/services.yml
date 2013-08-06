@@ -1,0 +1,7 @@
+parameters:
+#    mdw_rosant.example.class: MDW\RosantBundle\Example
+
+services:
+#    mdw_rosant.example:
+#        class: %mdw_rosant.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

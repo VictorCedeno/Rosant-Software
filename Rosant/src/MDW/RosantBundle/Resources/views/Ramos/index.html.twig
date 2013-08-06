@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+{% block title %}Ramos{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+     {{ parent() }}
+{% endblock %}
+{% block body -%}   
+<div id="contenedor" class="register">
+     {{ parent() }}
+            <h2>Listado de Ramos</h2>
+   
+  <div class="post"><a><img src="{{ asset('img/gastosMedicos.jpg') }}"/></a></div>
+      
+            <a class="enlace" href="{{ path('ramos_new') }}">
+               Registrar un nuevo ramo
+            </a>
+     
+    </ul>
+    <table id="datatables"  class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Ramo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr class="{{ cycle(["alt", ""], loop.index) }}">
+                <td><a href="{{ path('ramos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.codigo }}</td>
+                <td>{{ entity.ramo }}</td>
+                <td>
+                <ul>
+                   
+                    <li>
+                        <a href="{{ path('ramos_edit', { 'id': entity.id }) }}"><img src="{{ asset('icons/edit.png') }}" alt="edit" />editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+ </div>
+    {% endblock %}

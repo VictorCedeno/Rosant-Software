@@ -1,0 +1,86 @@
+{% extends '::base.html.twig' %}
+{% block title %}Clientes{% endblock title %}
+{% block stylesheets %}
+     
+   {{ parent() }}
+    
+{% endblock %}
+
+
+
+{% block javascripts %}
+<script src="{{asset('js/jquery-1.9.1.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('js/jquery.hoverIntent.minified.js')}}"></script>
+<script src="{{asset('js/jquery.dcmegamenu.1.3.3.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+                $('#datatables').dataTable({
+                    "sPaginationType":"full_numbers",
+                    "aaSorting":[[1, "asc"]],
+                    "bJQueryUI":true
+                   
+                    
+                });
+            })
+</script>
+  <script type="text/javascript">
+     jQuery(document).ready(function($) {
+    jQuery('#mega-menu-1').dcMegaMenu();
+    });   
+    </script>
+
+{% endblock %}
+
+{% block body %}
+         
+ 		
+ <div id="contenedor" class="register">
+     {{ parent() }}       
+
+ </br>
+<div class="post"><a><img src="{{ asset('img/clientes_banner.jpg') }}"/></a></div>
+    <table id="datatables"  class="display">
+        <thead>
+            <tr >
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fechanacimiento</th>
+                <th>Empresa</th>
+                <th>Email</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            
+            <tr class="{{ cycle(["alt", ""], loop.index) }}">
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.apellido }}</td>
+                <td>{% if entity.fechaNacimiento %}{{ entity.fechaNacimiento|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.empresa }}</td>
+                <td>{{ entity.email }}</td>
+                <td>
+             <div id="options">  
+                <ul>
+                    
+                    <li>
+                        <a class="boton" href="{{ path('clientes_edit', { 'id': entity.id }) }}"><img src="{{ asset('icons/edit.png') }}" alt="edit" />editar</a>
+                         
+                    </li>
+                    
+                    <li> <a class="boton" href="{{ path('polizas_new', { 'cedula': entity.id,'nombre':entity.nombre,'apellido':entity.apellido } ) }}"><img src="{{ asset('icons/add.png') }}" alt="addPoliza" />Añadir Poliza</a> </li>
+                      <li> <a class="boton" href="{{ path('mensajes_new', { 'email':entity.email } ) }}"><img src="{{ asset('icons/email.png') }}" alt="addPoliza" />Enviar Correo</a> </li>    
+                </ul>
+             </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ 
+</div>
+        
+       
+    {% endblock %}
+

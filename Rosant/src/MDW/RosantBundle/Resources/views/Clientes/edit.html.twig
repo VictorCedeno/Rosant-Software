@@ -1,0 +1,144 @@
+{% extends '::base.html.twig' %}
+{% block title %}Editar Registro{% endblock title %}
+{% block stylesheets %}
+       <link href="{{ asset('css/messi.css') }}" type="text/css" rel="stylesheet" />
+         <link href="{{ asset('css/formularios.css') }}" type="text/css" rel="stylesheet" />
+           {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+
+
+    <script src="{{asset('js/jquery.form.js')}}"></script>
+    <script src="{{asset('js/validacionesCliente.js')}}"></script>
+    {{ parent() }}
+   
+{% endblock %}
+
+
+{% block body %}
+
+    <form action="{{ path('clientes_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="register" id="myForm">
+             
+            <input type="hidden" name="_method" value="PUT" />
+                    {{ parent() }}      
+                 <h1>Edición de Cliente</h1>
+                   <img class="centrada" src="{{ asset('img/banner-clientes.jpg') }}" />
+            <fieldset class="row1">
+                <legend>Información Personal</legend>
+                <p>
+                    {{ form_label(edit_form.nombre, 'Nombre:')}}
+                    {{ form_widget(edit_form.nombre)}}
+                    {{ form_label(edit_form.apellido, 'Apellido:')}}
+                    {{ form_widget(edit_form.apellido)}}
+                          
+                </p>
+
+                <p>
+                    {{ form_label(edit_form.email, 'Correo electrónico*:')}}
+                    {{ form_widget(edit_form.email)}}
+                    {{ form_label(edit_form.sexo, 'Sexo:')}}
+                    {{ form_widget(edit_form.sexo)}}
+                    
+                </p>
+                
+                 <p>
+                    {{ form_label(edit_form.fechaNacimiento, 'Fecha de Nacimiento:*')}}
+                    {{ form_widget(edit_form.fechaNacimiento)}}
+                 
+                    <p>
+                    {{ form_label(edit_form.profesion, 'Profesión')}}
+                    {{ form_widget(edit_form.profesion)}}
+                    {{ form_label(edit_form.cedula, 'Cédula*:')}}
+                    {{ form_widget(edit_form.cedula)}}
+                    </p>
+                     <p><label class="obinfo">*Campos Obligatorios</label><p>
+                </p>
+                
+
+            </fieldset>
+
+            
+             <fieldset class="row2">
+            
+                <legend>Contacto</legend>
+                <p>
+                    {{ form_label(edit_form.telefonoFijo, 'Teléfono Fijo:')}}
+                    {{ form_widget(edit_form.telefonoFijo)}}
+                    {{ form_label(edit_form.telefonoMovil, 'Celular:')}}
+                    {{ form_widget(edit_form.telefonoMovil)}}
+                    {{ form_label(edit_form.region, 'Región:')}}
+                    {{ form_widget(edit_form.region)}}
+                    <br /><br />
+                    {{ form_label(edit_form.direccionDomicilio, 'Dirección Domiciliaria:')}}
+                    {{ form_widget(edit_form.direccionDomicilio)}}
+                    {{ form_label(edit_form.agente, 'Agente:')}}
+                    {{ form_widget(edit_form.agente)}}
+                    {{ form_label(edit_form.zona, 'Zona:')}}
+                    {{ form_widget(edit_form.zona)}}
+                </p>
+                <p>
+                    {{ form_label(edit_form.referenciaDireccion, 'Referencia de Dirección:')}}
+                    {{ form_widget(edit_form.referenciaDireccion)}}
+                </p>
+            </fieldset>
+
+                 <fieldset class="row2">
+                <legend>Información Laboral</legend>
+                <p>
+                    {{ form_label(edit_form.empresa, 'Empresa:')}}
+                    {{ form_widget(edit_form.empresa)}}
+                    {{ form_label(edit_form.telefonoEmpresa, 'Teléfono Empresa:')}}
+                    {{ form_widget(edit_form.telefonoEmpresa)}}
+                    {{ form_label(edit_form.cargoEmpresa, 'Cargo:')}}
+                    {{ form_widget(edit_form.cargoEmpresa)}}       
+                </p>
+                   
+                <p>
+                 {{ form_label(edit_form.direccionEmpresa, 'Direccion Empresa:')}}
+                 {{ form_widget(edit_form.direccionEmpresa)}}
+                 {{ form_label(edit_form.contratante, 'Contratante:')}}
+                 {{ form_widget(edit_form.contratante)}}
+                 {{ form_label(edit_form.tipo, 'Tipo:')}}
+                 {{ form_widget(edit_form.tipo)}}
+                <p>
+                 {{ form_label(edit_form.referido, 'Referido:')}}
+                 {{ form_widget(edit_form.referido)}}
+                         <div class="validation"> {{ form_errors(edit_form) }}
+                      {{ form_errors(edit_form.email) }}
+                      {{ form_errors(edit_form.cedula) }}
+                 </div>  
+                <div id="oculto"> {{ form_widget(edit_form.fechaRegistro)}}</div> 
+                
+             
+                </p>   
+                </p>
+            </fieldset> 
+             {{ form_rest(edit_form) }} 
+            <div><button type="submit" class="button">Guardar Cambios</button>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+       <a class="enlace" href="{{ path('clientes') }}">&#60;&#60;Regresar a la lista</a>
+    </li>
+    <li>
+        <form action="{{ path('clientes_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+                     {{ form_widget(delete_form) }}
+            <button id="deleteEntity" type="submit" class="enlace">Eliminar</button>
+        
+        </form>
+    </li>
+</ul>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div id="alert">
+                <a class="alert" href="#alert">{{ flashMessage }}</a> 
+            </div>
+        {% endfor %}
+</div>
+  
+
+
+
+{% endblock %}
+
